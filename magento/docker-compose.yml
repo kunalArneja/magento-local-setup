@@ -1,0 +1,22 @@
+version: '2'
+services:
+  magento:
+    image: 'docker.io/bitnami/magento:2.4.0'
+    environment:
+      - MARIADB_HOST=host.docker.internal
+      - MARIADB_PORT_NUMBER=3306
+      - MAGENTO_DATABASE_HOST=host.docker.internal
+      - MAGENTO_DATABASE_PORT_NUMBER=3306
+      - MAGENTO_DATABASE_USER=bn_magento
+      - MAGENTO_DATABASE_PASSWORD=magento_db_password
+      - MAGENTO_DATABASE_NAME=bitnami_magento
+      - ELASTICSEARCH_HOST=host.docker.internal
+      - ELASTICSEARCH_PORT_NUMBER=9200
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - 'magento_data:/bitnami'
+volumes:
+  magento_data:
+    driver: local
